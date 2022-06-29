@@ -3,10 +3,6 @@ import {AppointmentForm} from "../../components/appointmentForm/AppointmentForm"
 import {TileList} from "../../components/tileList/TileList"
 
 export const AppointmentsPage = ({appointments, contacts, addAppointment}) => {
-  /*
-  Define state variables for 
-  appointment info
-  */
   const [title, setTitle] = useState('');
   const [contact, setContact] = useState('');
   const [date, setDate] = useState('');
@@ -14,17 +10,15 @@ export const AppointmentsPage = ({appointments, contacts, addAppointment}) => {
  
 
   const handleSubmit = (e) => {
+    //prevent default html form behavior
     e.preventDefault();
-    /*
-    Add contact info and clear data  
-    */
     addAppointment(title, contact, date, time);
     setTitle('');
     setContact('');
     setDate('');
     setTime('');
-
-   
+    /* still need to work on clearing contact choice from input field.
+    Currently, previous choise remains until user manually selects a new choice */
   };
 
   return (

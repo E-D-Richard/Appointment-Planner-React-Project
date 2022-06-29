@@ -14,25 +14,11 @@ export const AppointmentForm = ({
   handleSubmit
 }) => {
   
-  //try to understand this func for future usage
   const getTodayString = () => {
     const [month, day, year] = new Date()
       .toLocaleDateString("en-US")
       .split("/");
     return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
-  };
-
-  const minDate = getTodayString()
-  
-
-  const handleTitleChange =({target})=>{
-    setTitle(target.value);
-  };
-  const handleDateChange =({target})=>{
-    setDate(target.value);
-  };
-  const handleTimeChange =({target})=>{
-    setTime(target.value);
   };
 
   return (
@@ -41,32 +27,32 @@ export const AppointmentForm = ({
         contacts={contacts}
         name="contact"
         value={contact}
-        onChange={(e) => setContact(e.target.value)}
-        placeholder="Appointment With" 
+        onChange={({target}) => setContact(target.value)}
       />
       <input 
         required
-        value={title}
-        placeholder="title"
-        onChange={handleTitleChange}
         type="text"
+        name="title"
+        value={title}
+        placeholder="Appointment Title"
+        onChange={({target}) => setTitle(target.value)}
       />
       <input
         required
         type="date"
+        name="date"
         value={date}
-        min={minDate}
-        onChange={handleDateChange}
-        
-        
+        min={getTodayString()}
+        onChange={({target}) => setDate(target.value)}
       />
       <input
         required
-        value={time}
-        onChange={handleTimeChange}
         type="time"
+        name="time"
+        value={time}
+        onChange={({target}) => setTime(target.value)}
       />
-    <input type="submit" value="Submit" />
+      <input type="submit" value="Add Appointment" />
     </form>
   );
 };

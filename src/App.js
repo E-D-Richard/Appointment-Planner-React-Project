@@ -5,10 +5,6 @@ import { AppointmentsPage } from "./containers/appointmentsPage/AppointmentsPage
 import { ContactsPage } from "./containers/contactsPage/ContactsPage";
 
 function App() {
-  /*
-  Define state variables for 
-  contacts and appointments 
-  */
   const [contacts, setContacts] = useState([]);
   const [appointments, setAppointments] = useState([]);
 
@@ -17,38 +13,26 @@ function App() {
     APPOINTMENTS: "/appointments",
   };
 
-  /*
-  Implement functions to add data to
-  contacts and appointments
-  */
   const addContact = (name, phone, email) => {
-    const newContactObj = {
-      name: name,
-      phone: phone,
-      email: email
-    }
-    setContacts(prevArr => [...prevArr, newContactObj]);
+    setContacts(prevArr => [...prevArr,
+      {
+        name: name,
+        phone: phone,
+        email: email
+      }
+    ]);
   }
 
   const addAppointment = (title, contact, date, time) => {
-    //add date and time automatically?
-    //const today = new Date();
-    //const date = (today.getMonth()+1)+'-'+today.getDate()+'-'+today.getFullYear();
-    //const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    
-    const newAppointmentObj = {
-      title: title,
-      contact: contact,
-      date: date,
-      time: time
-    }
-    setAppointments(prevArr=>[...prevArr, newAppointmentObj])
-
+    setAppointments(prevArr=>[...prevArr, 
+      {
+        title: title,
+        contact: contact,
+        date: date,
+        time: time
+      }
+    ])
   }
-
-
-  
-  
 
   return (
     <>
@@ -62,13 +46,18 @@ function App() {
       </nav>
       <main>
         <Switch>
+          <Route exact path="/">
+            <Redirect to={ROUTES.CONTACTS} />
+          </Route>
           <Route path={ROUTES.CONTACTS}>
-            {/* Add props to ContactsPage */}
             <ContactsPage contacts={contacts} addContact={addContact} />
           </Route>
           <Route path={ROUTES.APPOINTMENTS}>
-            {/* Add props to AppointmentsPage */}
-            <AppointmentsPage appointments={appointments} contacts={contacts} addAppointment={addAppointment} />
+            <AppointmentsPage
+              appointments={appointments}
+              contacts={contacts} 
+              addAppointment={addAppointment}
+            />
           </Route>
         </Switch>
       </main>

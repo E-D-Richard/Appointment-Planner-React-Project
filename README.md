@@ -2,7 +2,7 @@
 
 ## Built with React
 
-[view WebApp at:](http://localhost:3000)
+[view WebApp](https://appointment-planner-react-project.netlify.app)
 
 ### Current Build
 

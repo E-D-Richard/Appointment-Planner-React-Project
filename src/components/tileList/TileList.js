@@ -1,11 +1,16 @@
 import React from "react";
 import {Tile} from '../tile/Tile';
 
-export const TileList = ({list}) => {
+export const TileList = ({list, handleDelete}) => {
   return (
-    <div>
-      {list.map((object, index) => 
-        <Tile object={object} key={index} />
+    <div className="tileList">
+      {list.map((itemObj, index) => 
+        <Tile 
+          itemObj={itemObj}
+          index={index}
+          key={`tile-${index}`} 
+          handleDelete={handleDelete}
+        />
       )}
     </div>
     

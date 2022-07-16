@@ -3,7 +3,7 @@ import {TileList} from '../../components/tileList/TileList';
 import { ContactForm } from "../../components/contactForm/ContactForm";
 import "./ContactPage.css";
 
-export const ContactsPage = ({contacts, addContact}) => {
+export const ContactsPage = ({contacts, addContact, setContacts}) => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
@@ -11,6 +11,8 @@ export const ContactsPage = ({contacts, addContact}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    //prevents submitting spaces as name value
+    if(name.trim().length === 0) return;
     if(!nameIsTaken){
       addContact(name, phone, email);
       setName('');
@@ -19,21 +21,24 @@ export const ContactsPage = ({contacts, addContact}) => {
     }
   };
 
-  /* nameIsDuplicate checks for contact name in the contacts array 
-  - search is case sensitive and ignores space differences */
+
   useEffect(()=>{
-    const inputName = name.toLowerCase().split(/\s+/).join('');
     const nameIsDuplicate = contacts.some(contact =>
-      contact.name.toLowerCase().split(/\s+/).join('') === inputName
-    );
-    
+      contact.name.toLowerCase().trim() === name.toLowerCase().trim());
     nameIsDuplicate ? setNameIsTaken(true) : setNameIsTaken(false);
   }, [name, contacts, nameIsTaken]);
 
+  const handleDelete = ({ target }) => {
+    console.log('delete dected')
+    let revisedContacts = contacts.filter(
+      (contact, index) => Number(target.id) !== index
+    );
+    setContacts(revisedContacts);
+  };
 
   return (
     <div>
-      <section className="form-section">
+      <section className="contacts-form-section">
         <h2>Add Contact</h2>
         {nameIsTaken && <h3 className="alert-duplicate">Contact Name Already in Use!</h3>}
         <ContactForm 
@@ -46,7 +51,7 @@ export const ContactsPage = ({contacts, addContact}) => {
       <hr />
       <section>
         <h2>Contacts</h2>
-        <TileList list={contacts} />
+        <TileList list={contacts} handleDelete={handleDelete} />
       </section>
     </div>
   );

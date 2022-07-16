@@ -1,12 +1,18 @@
+body {
+  display: flex;
+  justify-content: center;
+}
+
 #root {
-  padding: 30px;
+  padding: 8px 30px 30px;
+  max-width: 600px;
   font-family: "Open Sans", sans-serif;
 }
 
 nav > a {
   font-style: normal;
   font-weight: normal;
-  font-size: 14px;
+  font-size: 20px;
   color: #000000;
   margin-right: 30.5px;
   text-decoration-line: none;
@@ -17,21 +23,20 @@ nav > a.active {
 }
 
 nav {
-  padding-bottom: 20px;
+  padding-bottom: 10px;
   border-bottom: 1px solid #979797;
+  margin: 0 0 35px 7px;
+}
+
+.appointments-form-section h2, .contacts-form-section h2 {
+  font-size: 2rem;
+  text-align: center;
+  font-weight: bold;
+  color: #000000;
   margin-bottom: 20px;
 }
 
-h2 {
-  font-weight: bold;
-  font-size: 18px;
-  color: #000000;
-  margin: 0;
-  margin-bottom: 18px;
-}
 
-section {
-}
 
 hr {
   border: none;
@@ -67,16 +72,80 @@ select {
   box-sizing: border-box;
 }
 
-.tile {
-  margin: 0;
-  font-size: 14px;
-  margin-bottom: 4px;
+/*----------------------- form ------------------------*/
+
+form {
+  width: 600px;
 }
 
-.tile.tile-title {
-  font-weight: bold;
+form label {
+  font-size: 0.7rem;
 }
+
+form input, form select {
+  margin-top: 3px;
+}
+
+form .time-date-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.time-date-container label {
+  flex-basis: 49%;
+}
+
+form #timePicker {
+ font-size: 0.8rem;
+}
+
+form #datePicker {
+  margin-right: 4%;
+  font-size: 0.9rem;
+}
+
+/* ------------------ Tile ----------------------  */
+
+.tileList {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(140px, 1fr));
+  gap: 8px;
+}
+
 
 .tile-container {
-  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 8px 8px 4px 8px;
+  min-height: 65px;
+  border: 1px solid black;
+  border-radius: 10px;
 }
+
+.tile-title-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tile-title {
+  font-weight: bold;
+  font-size: 0.8rem;
+  margin: 0.2rem 0 0.8rem 0;
+}
+
+.tile-text {
+  margin: 0;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+
+
+.fa-trash-o {
+  position: relative;
+  color: darkgray;
+  cursor: pointer;
+  padding-left: 12px;
+}
+

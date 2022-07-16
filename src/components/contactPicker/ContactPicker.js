@@ -1,12 +1,10 @@
 import React from "react";
 
-
-/* fix console error - possibly refactor using react docs suggested approach  */
-export const ContactPicker = ({contacts, onChange, name}) => {
+export const ContactPicker = ({contacts, contact, onChange, name}) => {
   return (
-    <select required name={name} onChange={onChange}>
-      <option value={""} key={-1} selected="selected">Select Contact</option>
-      
+    <select required name={name} onChange={onChange} value={contact} >
+      <option value="" key="default" >Select Contact</option>
+
       {contacts.map((contact) => 
         <option value={contact.name} key={contact.name}>
           {contact.name}

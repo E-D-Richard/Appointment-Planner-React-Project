@@ -1,29 +1,35 @@
 import React, { useState } from "react";
 import {AppointmentForm} from "../../components/appointmentForm/AppointmentForm";
 import {TileList} from "../../components/tileList/TileList"
+import { getCurrentTime, getTodayString, formatDate, formatTime } from "../../utils/helpers";
 
-export const AppointmentsPage = ({appointments, contacts, addAppointment}) => {
+export const AppointmentsPage = ({appointments, contacts, addAppointment, setAppointments}) => {
   const [title, setTitle] = useState('');
   const [contact, setContact] = useState('');
-  const [date, setDate] = useState('');
-  const [time, setTime] = useState('');
- 
+  const [date, setDate] = useState(getTodayString());
+  const [time, setTime] = useState(getCurrentTime());
 
   const handleSubmit = (e) => {
-    //prevent default html form behavior
     e.preventDefault();
-    addAppointment(title, contact, date, time);
+    //prevents submitting spaces as title value
+    if(title.trim().length === 0) return;
+    addAppointment(title, contact, formatDate(date), formatTime(time, date));
     setTitle('');
     setContact('');
-    setDate('');
-    setTime('');
-    /* still need to work on clearing contact choice from input field.
-    Currently, previous choise remains until user manually selects a new choice */
+    setDate(getTodayString());
+    setTime(getCurrentTime());
+  };
+
+  const handleDelete = ({ target }) => {
+    let revisedAppointments = appointments.filter(
+      (appt, index) => Number(target.id) !== index
+    );
+    setAppointments(revisedAppointments);
   };
 
   return (
     <div>
-      <section>
+      <section className="appointments-form-section">
         <h2>Add Appointment</h2>
         <AppointmentForm 
           contacts={contacts}
@@ -32,12 +38,13 @@ export const AppointmentsPage = ({appointments, contacts, addAppointment}) => {
           date={date} setDate={setDate} 
           time={time} setTime={setTime}
           handleSubmit={handleSubmit} 
+          getTodayString={getTodayString}
         />
       </section>
       <hr />
       <section>
         <h2>Appointments</h2>
-        <TileList list={appointments} />
+        <TileList list={appointments} handleDelete={handleDelete} />
       </section>
     </div>
   );

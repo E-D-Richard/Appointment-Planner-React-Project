@@ -29,7 +29,6 @@ export const ContactsPage = ({contacts, addContact, setContacts}) => {
   }, [name, contacts, nameIsTaken]);
 
   const handleDelete = ({ target }) => {
-    console.log('delete dected')
     let revisedContacts = contacts.filter(
       (contact, index) => Number(target.id) !== index
     );

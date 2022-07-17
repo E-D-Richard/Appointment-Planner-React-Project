@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {AppointmentForm} from "../../components/appointmentForm/AppointmentForm";
 import {TileList} from "../../components/tileList/TileList"
-import { getCurrentTime, getTodayString, formatDate, formatTime } from "../../utils/helpers";
+import { getCurrentTime, getTodayString, formatDate, formatTime } from "../../helpers/helpers";
 
 export const AppointmentsPage = ({appointments, contacts, addAppointment, setAppointments}) => {
   const [title, setTitle] = useState('');
@@ -22,7 +22,7 @@ export const AppointmentsPage = ({appointments, contacts, addAppointment, setApp
 
   const handleDelete = ({ target }) => {
     let revisedAppointments = appointments.filter(
-      (appt, index) => Number(target.id) !== index
+      (index) => Number(target.id) !== index
     );
     setAppointments(revisedAppointments);
   };

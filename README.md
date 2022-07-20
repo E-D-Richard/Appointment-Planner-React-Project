@@ -10,7 +10,7 @@ The goal of this project was to create an appointment management app that manage
 
 - HTML
 - CSS
-- Vanilla JS
+- Node JS
 - React
 
 ## Features
@@ -30,8 +30,9 @@ The goal of this project was to create an appointment management app that manage
 - allow users to edit saved contacts
 
 ## Contributors
-Special thanks to my colleague [Jacob](https://github.com/1moregame) for reviewing my code and allowing me to review his code. I learnt a lot from the code reviewing process and was made aware of many great potential features.
+
+Special thanks to my colleague [Jacob](https://github.com/1moregame) for reviewing my code and allowing me to review his code. I learnt a lot from the code reviewing process and was made aware of many great features and alternative solutions.
 
 ## Notes
 
-Please note, since this is a front-end project, the WebApp only has front-end capabilities. Input data is not sent to a backend server/database and as such, all data is lost upon a page refresh.  
+Please note, since this is a front-end project, the WebApp only has front-end capabilities. Input data is not sent to a backend server/database and as such, all data is lost upon a page refresh.
